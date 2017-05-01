@@ -5,18 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AlbumArrayAdapter extends ArrayAdapter<AlbumItem> {
+public class AlbumArrayAdapter extends ArrayAdapter<CountyItem> {
 
 	Context context;
 	
 	public AlbumArrayAdapter(Context context,
-			ArrayList<AlbumItem> items) {
+			ArrayList<CountyItem> items) {
 		super(context, 0, items);
 		this.context = context;
 	}
@@ -34,7 +33,7 @@ public class AlbumArrayAdapter extends ArrayAdapter<AlbumItem> {
 		} else {
 			itemlayout = (LinearLayout) convertView;
 		}
-		AlbumItem item = (AlbumItem)getItem(position);
+		CountyItem item = (CountyItem)getItem(position);
 		
 		TextView tv_name = (TextView)itemlayout.
 				findViewById(R.id.itemtv);

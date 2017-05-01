@@ -4,6 +4,12 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	>
+
+	<TextView
+		android:id="@+id/county_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
 	<GridView android:id="@+id/gv"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
