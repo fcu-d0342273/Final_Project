@@ -38,8 +38,8 @@ public class MainActivity extends ActionBarActivity {
 		albumlist.add(new CountyItem("屏東"));
 
 		
-		TitleArrayAdapter adapter =
-			new TitleArrayAdapter(this, albumlist);
+		AlbumArrayAdapter adapter =
+			new AlbumArrayAdapter(this, albumlist);
 		
 		lv = (ListView)findViewById(R.id.lv);
 		lv.setAdapter(adapter);
