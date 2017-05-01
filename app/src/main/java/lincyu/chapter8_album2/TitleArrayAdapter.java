@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AlbumArrayAdapter extends ArrayAdapter<CountyItem> {
+public class TitleArrayAdapter extends ArrayAdapter<CountyItem> {
 
 	Context context;
 	
-	public AlbumArrayAdapter(Context context,
-			ArrayList<CountyItem> items) {
+	public TitleArrayAdapter(Context context,
+                             ArrayList<CountyItem> items) {
 		super(context, 0, items);
 		this.context = context;
 	}
