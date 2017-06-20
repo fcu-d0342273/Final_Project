@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.os.Handler;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
         ListView lvIms = (ListView)findViewById(R.id.lv);
         lvIms.setAdapter(adapter);
         getImFromFirebase();
-        lvIms.setOnItemClickListener(itemclick);
+        //lvIms.setOnItemClickListener(itemclick);
 
 
 
@@ -307,35 +310,80 @@ public class MainActivity extends ActionBarActivity {
                            ViewGroup parent) {
 
            LayoutInflater inflater = LayoutInflater.from(context);
-
+            final ViewHolder viewHolder;
            LinearLayout itemlayout = null;
            if (convertView == null) {
-               itemlayout = (LinearLayout) inflater.inflate
-                       (R.layout.dataitem, null);
+               itemlayout = (LinearLayout) inflater.inflate(R.layout.dataitem, null);
+               //viewHolder = new ViewHolder(convertView);
+               //convertView.setTag(viewHolder);
            } else {
                itemlayout = (LinearLayout) convertView;
+               //viewHolder = (ViewHolder)convertView.getTag();
            }
-           CountyItem item = (CountyItem) getItem(position);
+           final CountyItem item = (CountyItem) getItem(position);
 
            TextView tv_name = (TextView)itemlayout.findViewById(R.id.county);
            tv_name.setText(item.getCounty());
-           tv_name.setTextColor(Color.BLUE);
+           tv_name.setTextColor(Color.RED);
 
            TextView tv_psi = (TextView) itemlayout.findViewById(R.id.psi);
            tv_psi.setText("空氣汙染指標(Psi) :" + item.getPsi());
+           tv_psi.setTextColor(Color.BLUE);
            TextView tv_pollutant = (TextView) itemlayout.findViewById(R.id.pollutant);
            tv_pollutant.setText("空氣汙染物(Pollutant) : " + item.getPollutant());
+           tv_pollutant.setTextColor(Color.BLUE);
            TextView tv_windspeed = (TextView) itemlayout.findViewById(R.id.windspeed);
            tv_windspeed.setText("風速(m/sec) : " + item.getWindSpeed());
+           tv_windspeed.setTextColor(Color.BLUE);
            TextView tv_winddir = (TextView) itemlayout.findViewById(R.id.winddir);
-            tv_winddir.setText("風向(degrees) : " + item.getWindDir());
+           tv_winddir.setText("風向(degrees) : " + item.getWindDir());
+           tv_winddir.setTextColor(Color.BLUE);
            TextView tv_pm25 = (TextView) itemlayout.findViewById(R.id.pm25);
-            tv_pm25.setText("細懸浮微粒((μg/m3) : " + item.getPm25());
+           tv_pm25.setText("細懸浮微粒((μg/m3) : " + item.getPm25());
+           tv_pm25.setTextColor(Color.BLUE);
            TextView tv_ptime = (TextView) itemlayout.findViewById(R.id.ptime);
            tv_ptime.setText("資料建置日期(YMD) : " + item.getpTime());
+           tv_ptime.setTextColor(Color.BLUE);
+
+           final GridLayout grid = (GridLayout)itemlayout.findViewById(R.id.grid);
+
+           tv_name.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   if(grid.getVisibility() == View.GONE){
+                       grid.setVisibility(View.VISIBLE);
+                   }else{
+                       grid.setVisibility(View.GONE);
+                   }
+               }
+           });
+
+
 
 
            return itemlayout;
        }
+       class ViewHolder{
+           View rootView;
+           TextView tv_name;
+           TextView tv_psi;
+           TextView tv_pollutant;
+           TextView tv_windspeed;
+           TextView tv_winddir;
+           TextView tv_pm25;
+           TextView tv_ptime;
+           GridLayout grid;
+           public ViewHolder(View view) {
+               rootView = view;
+               tv_name = (TextView)view.findViewById(R.id.county);
+               tv_psi = (TextView)view.findViewById(R.id.psi);
+               tv_pollutant = (TextView) view.findViewById(R.id.pollutant);
+               tv_windspeed = (TextView) view.findViewById(R.id.windspeed);
+               tv_winddir = (TextView) view.findViewById(R.id.winddir);
+               tv_pm25 = (TextView) view.findViewById(R.id.pm25);
+               tv_ptime = (TextView) view.findViewById(R.id.ptime);
+               grid = (GridLayout)view.findViewById(R.id.grid);
+           }
+           }
    }
 }
