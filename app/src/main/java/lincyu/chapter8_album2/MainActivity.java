@@ -310,7 +310,7 @@ public class MainActivity extends ActionBarActivity {
                            ViewGroup parent) {
 
            LayoutInflater inflater = LayoutInflater.from(context);
-            final ViewHolder viewHolder;
+            //final ViewHolder viewHolder;
            LinearLayout itemlayout = null;
            if (convertView == null) {
                itemlayout = (LinearLayout) inflater.inflate(R.layout.dataitem, null);
@@ -363,7 +363,7 @@ public class MainActivity extends ActionBarActivity {
 
            return itemlayout;
        }
-       class ViewHolder{
+       /*class ViewHolder{
            View rootView;
            TextView tv_name;
            TextView tv_psi;
@@ -384,6 +384,6 @@ public class MainActivity extends ActionBarActivity {
                tv_ptime = (TextView) view.findViewById(R.id.ptime);
                grid = (GridLayout)view.findViewById(R.id.grid);
            }
-           }
+           }*/
    }
 }
