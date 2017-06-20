@@ -326,13 +326,40 @@ public class MainActivity extends ActionBarActivity {
            final CountyItem item = (CountyItem) getItem(position);
 
            TextView tv_name = (TextView)itemlayout.findViewById(R.id.county);
-           tv_name.setText(item.getCounty());
-           tv_name.setTextColor(Color.RED);
-
            TextView tv_status = (TextView)itemlayout.findViewById(R.id.status);
-           tv_status.setText("目前狀態 : " + item.getStatus());
-           tv_status.setTextColor(Color.rgb(12, 160, 32));
            TextView tv_psi = (TextView) itemlayout.findViewById(R.id.psi);
+           tv_name.setText(item.getCounty());
+           tv_status.setText("目前狀態 : " + item.getStatus());
+           switch (item.getStatus()) {
+               case "良好" :
+                   tv_name.setTextColor(Color.rgb(12, 160, 32));
+                   tv_status.setTextColor(Color.rgb(12, 160, 32));
+                   break;
+               case "普通" :
+                   tv_name.setTextColor(Color.rgb(193, 142, 0));
+                   tv_status.setTextColor(Color.rgb(193, 142, 0));
+                   break;
+               case "不健康" :
+                   tv_name.setTextColor(Color.RED);
+                   tv_status.setTextColor(Color.RED);
+                   break;
+               case "非常不健康" :
+                   tv_name.setTextColor(Color.rgb(229, 0, 229));
+                   tv_status.setTextColor(Color.rgb(229, 0, 229));
+                   break;
+               case  "危害" :
+                   tv_name.setTextColor(Color.rgb(168, 6, 6));
+                   tv_status.setTextColor(Color.rgb(168, 6, 6));
+                   break;
+               default:
+                   tv_name.setTextColor(Color.BLACK);
+                   tv_status.setTextColor(Color.BLACK);
+                   tv_status.setText("目前狀態 : 無資料");
+                   break;
+           }
+
+
+
            tv_psi.setText("空氣汙染指標(Psi) :" + item.getPsi());
            tv_psi.setTextColor(Color.BLUE);
            TextView tv_pollutant = (TextView) itemlayout.findViewById(R.id.pollutant);
