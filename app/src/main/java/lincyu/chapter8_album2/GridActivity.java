@@ -25,6 +25,9 @@ public class GridActivity extends ActionBarActivity {
 		String counties = intent.getStringExtra("KEY_COUNTY");
 		String [] title = intent.getStringArrayExtra("KEY_TITLE");
 
+
+
+
 		String [] titleList = new String[title.length];
 		for (int i = 0; i < title.length; i++) {
 			titleList[i] = String.valueOf(title[i]);
@@ -57,6 +60,7 @@ public class GridActivity extends ActionBarActivity {
 			String title = getItem(position);
 			tv.setText(title);
 			tv.setHeight(500);
+
 
 
 
