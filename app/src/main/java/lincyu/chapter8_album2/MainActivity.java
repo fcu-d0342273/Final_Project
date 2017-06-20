@@ -199,6 +199,7 @@ public class MainActivity extends ActionBarActivity {
                 DataSnapshot dsPsi = ds.child("PSI");
                 DataSnapshot dsPm = ds.child("PM25");
                 DataSnapshot dsCo = ds.child("County");
+                DataSnapshot dsSt = ds.child("Status");
 
                 String windSpeed = (String) dsWs.getValue();
                 String windDir = (String) dsWd.getValue();
@@ -207,6 +208,7 @@ public class MainActivity extends ActionBarActivity {
                 String psi = (String) dsPsi.getValue();
                 String pm25 = (String) dsPm.getValue();
                 String county = (String) dsCo.getValue();
+                String status = (String) dsSt.getValue();
 
                 CountyItem im = new CountyItem("");
                 im.setCounty(county);
@@ -216,8 +218,9 @@ public class MainActivity extends ActionBarActivity {
                 im.setPollutant(pollutant);
                 im.setPsi(psi);
                 im.setPm25(pm25);
+                im.setStatus(status);
                 albumlist.add(im);
-                Log.v("Test", county + " : "  + pTime + " ; " + windSpeed + " ; " + windDir + " ; " + pollutant + " ; " + psi + " ; " + pm25);
+                Log.v("Test", county + " : "  + status + " ; " + pTime + " ; " + windSpeed + " ; " + windDir + " ; " + pollutant + " ; " + psi + " ; " + pm25);
 
                 Message msg = new Message();
                 msg.what = LIST_IM;
@@ -326,11 +329,17 @@ public class MainActivity extends ActionBarActivity {
            tv_name.setText(item.getCounty());
            tv_name.setTextColor(Color.RED);
 
+           TextView tv_status = (TextView)itemlayout.findViewById(R.id.status);
+           tv_status.setText("目前狀態 : " + item.getStatus());
+           tv_status.setTextColor(Color.rgb(12, 160, 32));
            TextView tv_psi = (TextView) itemlayout.findViewById(R.id.psi);
            tv_psi.setText("空氣汙染指標(Psi) :" + item.getPsi());
            tv_psi.setTextColor(Color.BLUE);
            TextView tv_pollutant = (TextView) itemlayout.findViewById(R.id.pollutant);
-           tv_pollutant.setText("空氣汙染物(Pollutant) : " + item.getPollutant());
+           if(item.getPollutant().equals("null")) {
+               tv_pollutant.setText("空氣汙染物(Pollutant) :  無");
+           }
+           else tv_pollutant.setText("空氣汙染物(Pollutant) : " + item.getPollutant());
            tv_pollutant.setTextColor(Color.BLUE);
            TextView tv_windspeed = (TextView) itemlayout.findViewById(R.id.windspeed);
            tv_windspeed.setText("風速(m/sec) : " + item.getWindSpeed());

@@ -15,8 +15,15 @@ public class CountyItem {
 	private  String psi;
 	private  String pm25;
 	private  String county;
+	private  String status;
 
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getCounty() {
 		return county;
